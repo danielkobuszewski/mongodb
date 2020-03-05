@@ -21,7 +21,7 @@ db.pets.find({name: "Kilha", species: "Gato"}, {ObjectId:1})
 ```
 5. Faça uma busca pelo ID e traga o Hamster Mike.<br>
 ```
-db.findOne({ObjectId: db.pets.findOne({name: "Kilha", species: "Gato"}, {"id":1})._id}
+db.pets.findOne({ObjectId: db.pets.findOne({name: "Kilha", species: "Gato"}, {"id":1})._id})
 ```
 6. Use o find para trazer todos os Hamsters.<br>
 ```
