@@ -135,7 +135,7 @@ db.stocks.find({"Profit Margin":{$exists:true}}).sort({"Profit Margin":-1}).limi
 ```
 4. Qual foi o setor mais rentável?
 ```
-db.stocks.
+db.stocks.aggregate([{$group:{_id:"$Sector",total:{$sum:"$Profit Margin"}}},{$sort:{total:-1}},{$limit:1}])
 ```
 5. Ordene as ações pelo profit e usando um cursor, liste as ações.
 ```
