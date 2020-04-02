@@ -143,7 +143,7 @@ db.stocks.
 ```
 6. Renomeie o campo “Profit Margin” para apenas “profit”.
 ```
-db.stocks.
+db.stocks.updateMany({},{$rename:{"Profit Margin":"profit"}})
 ```
 7. Agora liste apenas a empresa e seu respectivo resultado
 ```
