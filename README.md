@@ -151,7 +151,7 @@ db.stocks.
 ```
 8. Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?
 ```
-db.stocks.
+db.stocks.find({"Performance (YTD)":{$exists:true}},{"Performance (YTD)":1,"Ticker":1,"_id":0}).sort({"Performance (YTD)":-1}).limit(3)
 ```
 9. Liste as ações agrupadas por setor
 ```
