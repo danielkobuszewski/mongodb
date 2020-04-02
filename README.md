@@ -1,4 +1,4 @@
-# Exercício 1- Aquecendo com os pets 
+# Exercício 1 - Aquecendo com os pets 
 
 1. Adicione outro Peixe e um Hamster com nome Frodo.<br>
 ```
@@ -34,7 +34,7 @@ db.pets.find({name: "Mike"})
 db.pets.findOne({name: "Mike", species: "Cachorro"})
 ```
 
-# Exercício 2 – Mama mia!
+# Exercício 2 - Mama mia!
 
 1. Liste/Conte todas as pessoas que tem exatamente 99 anos. Você pode usar um count para indicar a quantidade.
 ```
