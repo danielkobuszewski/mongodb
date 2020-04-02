@@ -1,6 +1,4 @@
-# mongodb
-
-Exercício 1- Aquecendo com os pets 
+# Exercício 1- Aquecendo com os pets 
 
 1. Adicione outro Peixe e um Hamster com nome Frodo.<br>
 ```
@@ -36,7 +34,7 @@ db.pets.find({name: "Mike"})
 db.pets.findOne({name: "Mike", species: "Cachorro"})
 ```
 
-Exercício 2 – Mama mia!
+# Exercício 2 – Mama mia!
 
 1. Liste/Conte todas as pessoas que tem exatamente 99 anos. Você pode usar um count para indicar a quantidade.
 ```
@@ -119,4 +117,43 @@ db.italians.
 20. Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato, mais de 20 e menos de 60 anos.
 ```
 db.italians.find({favFruits:{$in:["Banana","Maçã"]},$or:[{cat:{$exists:true}},{dog:{$exists:true}}],age:{$gt:20,$lt:60}})
+```
+
+# Exercício 3 - Stockbrokers
+
+1. Liste as ações com profit acima de 0.5 (limite a 10 o resultado)
+```
+db.stocks.find({"Profit Margin":{"$gt":0.5}}).limit(10)
+```
+2. Liste as ações com perdas (limite a 10 novamente)
+```
+db.stocks.find({"Profit Margin":{"$lt":0.0}}).limit(10)
+```
+3. Liste as 10 ações mais rentáveis
+```
+db.stocks.find({"Profit Margin":{$exists:true}}).sort({"Profit Margin":-1}).limit(10)
+```
+4. Qual foi o setor mais rentável?
+```
+db.stocks.
+```
+5. Ordene as ações pelo profit e usando um cursor, liste as ações.
+```
+db.stocks.
+```
+6. Renomeie o campo “Profit Margin” para apenas “profit”.
+```
+db.stocks.
+```
+7. Agora liste apenas a empresa e seu respectivo resultado
+```
+db.stocks.
+```
+8. Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?
+```
+db.stocks.
+```
+9. Liste as ações agrupadas por setor
+```
+db.stocks.
 ```
