@@ -84,7 +84,7 @@ db.italians.find({"$or":[{cat:{$exists:true}},{dog:{$exists:true}}]},{cat:1,dog:
 ```
 12. Quais são as 5 pessoas mais velhas com sobrenome Rossi?
 ```
-db.italians.
+db.italians.find({surname: "Rossi"},{firstname:1, age:1, _id:0}).sort({age: -1}).limit(5)
 ```
 13. Crie um italiano que tenha um leão como animal de estimação. Associe um nome e idade ao bichano.
 ```
@@ -104,15 +104,15 @@ db.italians.remove({"$and":[{cat:{$exists:true}},{age:66}]})
 ```
 17. Utilizando o framework agregate, liste apenas as pessoas com nomes iguais a sua respectiva mãe e que tenha gato ou cachorro.
 ```
-db.italians.
+db.italians.aggregate([ {'$match': { mother: { $exists: 1}}}, {'$match': { $or: [{ cat: { $exists: true }}, { dog: { $exists: true }}]}}, {'$project': { "firstname": 1, "mother": 1, "cat": 1, "dog": 1, "isEqual": { "$cmp": ["$firstname","$mother.firstname"]} }}, {'$match': {"isEqual": 0}} ])
 ```
 18. Utilizando aggregate framework, faça uma lista de nomes única de nomes. Faça isso usando apenas o primeiro nome.
 ```
-db.italians.
+db.italians.aggregate([{$group: {_id: "$firstname"}},{'$project': {"firstname": 1}}])
 ```
 19. Agora faça a mesma lista do item acima, considerando nome completo.
 ```
-db.italians.
+db.italians.aggregate([{$group: {_id: { firstname: "$firstname", surname: "$surname" }}}])
 ```
 20. Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato, mais de 20 e menos de 60 anos.
 ```
@@ -148,7 +148,7 @@ db.stocks.updateMany({},{$rename:{"Profit Margin":"profit"}})
 ```
 7. Agora liste apenas a empresa e seu respectivo resultado
 ```
-db.stocks.
+db.stocks.find({},{"Company": 1,"Profit": 1, _id: 0})
 ```
 8. Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?
 ```
@@ -156,5 +156,5 @@ db.stocks.find({"Performance (YTD)":{$exists:true}},{"Performance (YTD)":1,"Tick
 ```
 9. Liste as ações agrupadas por setor
 ```
-db.stocks.
+db.stocks.aggregate([{$group: { _id :"$Sector", empresas: { $push: "$Company" }}}])
 ```
