@@ -139,7 +139,8 @@ db.stocks.aggregate([{$group:{_id:"$Sector",total:{$sum:"$Profit Margin"}}},{$so
 ```
 5. Ordene as ações pelo profit e usando um cursor, liste as ações.
 ```
-db.stocks.
+var cursor = db.stocks.find({"Profit Margin":{$exists:true}}).sort({"Profit Margin":-1});
+cursor.forEach(function(x){print(x.Ticker));
 ```
 6. Renomeie o campo “Profit Margin” para apenas “profit”.
 ```
